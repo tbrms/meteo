@@ -20,7 +20,7 @@ import toma.meteo.bean.BulletinMeteo;
 import toma.meteo.service.BulletinMeteoService;
 
 @SpringBootTest
-@ActiveProfiles("dev")
+//@ActiveProfiles("profiltoma,prod")
 class BulletinMeteoServiceTest {
 
 	private static final Float TEMP = 19.0f;

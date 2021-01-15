@@ -15,7 +15,7 @@ import java.util.Date;
 import java.util.Optional;
 import java.util.Properties;
 
-@ActiveProfiles({"dev","prod"})
+//@ActiveProfiles({"prod","profiltoma"})
 @Service
 public class ArduinoService {
 
@@ -32,7 +32,7 @@ public class ArduinoService {
         BulletinMeteo bulletinMeteo = null;
 
         try {
-            Properties properties = ConfigService.getConfig();
+            //Properties properties = ConfigService.getConfig();
             //final String HOST = properties.getProperty("arduino.host");
             //final String PORT = properties.getProperty("arduino.port");
 

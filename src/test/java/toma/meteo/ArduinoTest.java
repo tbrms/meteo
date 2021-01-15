@@ -17,7 +17,7 @@ import java.util.Properties;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @SpringBootTest
-@ActiveProfiles("dev")
+//@ActiveProfiles("profiltoma,prod")
 public class ArduinoTest {
 
     private static final String HTTP = "http://";

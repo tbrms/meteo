@@ -12,7 +12,7 @@ import toma.meteo.bean.BulletinMeteo;
 import toma.meteo.bean.ReleveMeteo;
 
 @SpringBootTest
-@ActiveProfiles("dev")
+//@ActiveProfiles("profiltoma,prod")
 public class JMapperTest {
 	
 	@Test

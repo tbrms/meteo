@@ -13,7 +13,7 @@ import toma.meteo.service.ConfigService;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
 @SpringBootTest
-@ActiveProfiles("dev")
+//@ActiveProfiles("profiltoma,prod")
 public class ConfigServiceTest {
 	
 	Logger logger = LoggerFactory.getLogger(ConfigServiceTest.class);

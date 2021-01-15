@@ -25,7 +25,7 @@ public class OrdonnanceurService {
 
 	private RestTemplate restTemplate = new RestTemplate();
 
-	@Scheduled(fixedRate = 60000)
+	@Scheduled(fixedRate = 3600000)
 	public void insertBulletinMeteo() {
 		Optional<BulletinMeteo> bulletinMeteo = arduinoService.getBulletinMeteo();
 

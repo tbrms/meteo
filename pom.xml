@@ -87,40 +87,47 @@
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-test</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+			<scope>runtime</scope>
+		</dependency>
 	</dependencies>
 	<profiles>
 		<profile>
-			<id>dev</id>
+			<id>profiltoma</id>
 			<activation>
 				<activeByDefault>true</activeByDefault>
 			</activation>
-			<build>
+			<properties>
+				<spring.profiles.active>profiltoma</spring.profiles.active>
+			</properties>
+			<!-- <build>
 				<plugins>
 					<plugin>
 						<groupId>org.springframework.boot</groupId>
 						<artifactId>spring-boot-maven-plugin</artifactId>
 						<configuration>
 							<profiles>
-								<profile>dev</profile>
+								<profile>profiltoma</profile>
 							</profiles>
 						</configuration>
 					</plugin>
 				</plugins>
-			</build>
-			<dependencies>
-				<dependency>
-					<groupId>com.h2database</groupId>
-					<artifactId>h2</artifactId>
-					<scope>test</scope>
-				</dependency>
-			</dependencies>
+			</build> -->
+		
 		</profile>
 		<profile>
 			<id>prod</id>
-			<activation>
-				<activeByDefault>true</activeByDefault>
-			</activation>
-			<build>
+			<properties>
+				<spring.profiles.active>prod</spring.profiles.active>
+			</properties>
+			<!-- <build>
 				<plugins>
 					<plugin>
 						<groupId>org.springframework.boot</groupId>
@@ -132,20 +139,7 @@
 						</configuration>
 					</plugin>
 				</plugins>
-			</build>
-			<dependencies>
-				<!-- H2 pour realiser les tests - A supprimer-->
-				<dependency>
-					<groupId>com.h2database</groupId>
-					<artifactId>h2</artifactId>
-					<scope>test</scope>
-				</dependency>
-				<dependency>
-					<groupId>org.postgresql</groupId>
-					<artifactId>postgresql</artifactId>
-					<scope>runtime</scope>
-				</dependency>
-			</dependencies>
+			</build> -->
 		</profile>
 	</profiles>
 
