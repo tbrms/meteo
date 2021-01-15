@@ -38,3 +38,5 @@ build/
 .mvn
 .DS_Store
 mvnw.cmd
+*.log
+/tmplogs
