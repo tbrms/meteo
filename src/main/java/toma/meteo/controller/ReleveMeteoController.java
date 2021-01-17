@@ -1,5 +1,6 @@
 package toma.meteo.controller;
 
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.Random;
 
@@ -52,9 +53,10 @@ public class ReleveMeteoController {
 		releveMeteoService.ajouter(bulletinMeteo);
 	}
 	
-	private float getRandomTemp() {
+	private BigDecimal getRandomTemp() {
 		Random r = new Random();
-		return (float) r.nextInt(20) + 10;
+		float random = r.nextInt(20) + 10;
+		return new BigDecimal(random);
 	}
 	
 	private float getRandomPression() {

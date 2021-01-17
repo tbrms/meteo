@@ -4,6 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.Month;
@@ -23,9 +25,10 @@ import toma.meteo.service.BulletinMeteoService;
 //@ActiveProfiles("profiltoma,prod")
 class BulletinMeteoServiceTest {
 
-	private static final Float TEMP = 19.0f;
-	private static final Float PRESSION = 1014f;
-	private static final Float HUMIDITE = 50f;
+	private static final BigDecimal TEMP = 
+			new BigDecimal(19.05).setScale(2, RoundingMode.HALF_UP);;
+	private static final int PRESSION = 1014;
+	private static final int HUMIDITE = 50;
 	
 	@Autowired
 	BulletinMeteoService bulletinMeteoService;
@@ -41,7 +44,7 @@ class BulletinMeteoServiceTest {
 	public void insererTemperature() {
 		Date date = new Date();
 
-		BulletinMeteo bulletinMeteo = getBulletinMeteo();
+		BulletinMeteo bulletinMeteo = getBulletinMeteo(date);
 		BulletinMeteo bulletinMeteoRetour = new BulletinMeteo();
 
 		bulletinMeteoService.ajouter(bulletinMeteo);
@@ -72,7 +75,7 @@ class BulletinMeteoServiceTest {
 		Date dateDebut = Date.from(localDateDebut.atZone(ZoneId.systemDefault()).toInstant());
 		Date dateFin = Date.from(localDateFin.atZone(ZoneId.systemDefault()).toInstant());
 
-		BulletinMeteo bulletinMeteo = getBulletinMeteo();
+		BulletinMeteo bulletinMeteo = getBulletinMeteo(date);
 		bulletinMeteo.setDate(date);
 
 		bulletinMeteoService.ajouter(bulletinMeteo);
@@ -90,9 +93,8 @@ class BulletinMeteoServiceTest {
 	 * Creation d'un bulletin meteo
 	 * @return le bulletin meteo cree
 	 */
-	private BulletinMeteo getBulletinMeteo() {
+	private BulletinMeteo getBulletinMeteo(Date date) {
 		BulletinMeteo bulletinMeteo = new BulletinMeteo();
-		Date date = new Date();
 
 		bulletinMeteo.setDate(date);
 		bulletinMeteo.setTemperature(TEMP);

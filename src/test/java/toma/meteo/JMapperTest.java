@@ -3,6 +3,9 @@ package toma.meteo;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -17,9 +20,10 @@ public class JMapperTest {
 	
 	@Test
 	public void mapperReleveMeteoToBulletinMeteo() {
-		Float temperature = 20.0f;
-		Float pression = 1014.0f;
-		Float humidite = 50.0f;
+		BigDecimal temperature = new BigDecimal(20.0).setScale(2, RoundingMode.HALF_UP);;
+		//BigDecimal temperatureControle = new BigDecimal(temperature);
+		int pression = 1014;
+		int humidite = 50;
 		ReleveMeteo releveMeteo = new ReleveMeteo(temperature, pression, humidite);
 		
 		JMapper<BulletinMeteo,ReleveMeteo> mapper = 
