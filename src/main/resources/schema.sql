@@ -1,4 +1,4 @@
-CREATE TABLE bulletin_meteo (
+CREATE TABLE IF NOT EXISTS bulletin_meteo (
     id   int8      NOT NULL,
     date timestamp NOT NULL,
     humidite int4 NOT NULL,
