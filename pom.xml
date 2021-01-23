@@ -144,6 +144,7 @@
 	</profiles>
 
 	<build>
+		<finalName>meteo</finalName>
 		<plugins>
 			<!--<plugin>
 				<groupId>org.springframework.boot</groupId>
