@@ -45,4 +45,8 @@ public class BulletinMeteoService {
 	public BulletinMeteo getLast(){
 		return bulletinMeteoRepository.findFirstByOrderByDateDesc();
 	}
+	
+	public List<BulletinMeteo> getDerniersBulletins(int n){
+		return bulletinMeteoRepository.getDerniersBulletins(n);
+	}
 }
