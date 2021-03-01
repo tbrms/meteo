@@ -97,15 +97,20 @@
 			<artifactId>postgresql</artifactId>
 			<scope>runtime</scope>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.apache.httpcomponents/httpclient -->
+		<!-- <dependency>
+		    <groupId>org.apache.httpcomponents</groupId>
+		    <artifactId>httpclient</artifactId> 
+		</dependency>	 -->	
 	</dependencies>
 	<profiles>
 		<profile>
-			<id>profiltoma</id>
+			<id>dev</id>
 			<activation>
 				<activeByDefault>true</activeByDefault>
 			</activation>
 			<properties>
-				<spring.profiles.active>profiltoma</spring.profiles.active>
+				<spring.profiles.active>dev</spring.profiles.active>
 			</properties>
 			<!-- <build>
 				<plugins>
@@ -120,7 +125,14 @@
 					</plugin>
 				</plugins>
 			</build> -->
-		
+			<dependencies>
+				<dependency>
+					<groupId>com.h2database</groupId>
+					<artifactId>h2</artifactId>
+					<scope>runtime</scope>
+				</dependency>
+			</dependencies>
+			
 		</profile>
 		<profile>
 			<id>prod</id>
@@ -140,6 +152,14 @@
 					</plugin>
 				</plugins>
 			</build> -->
+			<dependencies>
+				<dependency>
+					<groupId>org.postgresql</groupId>
+					<artifactId>postgresql</artifactId>
+					<scope>runtime</scope>
+		</dependency>
+			</dependencies>
+			
 		</profile>
 	</profiles>
 
