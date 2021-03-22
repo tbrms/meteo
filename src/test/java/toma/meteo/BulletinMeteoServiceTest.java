@@ -26,7 +26,7 @@ import toma.meteo.service.BulletinMeteoService;
 class BulletinMeteoServiceTest {
 
 	private static final BigDecimal TEMP = 
-			new BigDecimal(19.05).setScale(2, RoundingMode.HALF_UP);;
+			new BigDecimal(19.1).setScale(1, RoundingMode.HALF_UP);;
 	private static final int PRESSION = 1014;
 	private static final int HUMIDITE = 50;
 	
