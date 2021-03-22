@@ -6,3 +6,5 @@ CREATE TABLE IF NOT EXISTS bulletin_meteo (
     temperature numeric(19,1) NOT NULL,
     PRIMARY KEY (id)
 );
+
+CREATE SEQUENCE IF NOT EXISTS hibernate_sequence;
