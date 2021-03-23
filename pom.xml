@@ -12,7 +12,7 @@
 	<artifactId>meteo</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
-	<name>meteo</name>
+<!-- 	<name>meteo</name> -->
 	<description>Station meteo</description>
 
 	<properties>
@@ -101,7 +101,7 @@
 		<!-- <dependency>
 		    <groupId>org.apache.httpcomponents</groupId>
 		    <artifactId>httpclient</artifactId> 
-		</dependency>	 -->	
+		</dependency>	 -->
 	</dependencies>
 	<profiles>
 		<profile>
@@ -111,6 +111,7 @@
 			</activation>
 			<properties>
 				<spring.profiles.active>dev</spring.profiles.active>
+				<rp.build.warname>meteodev</rp.build.warname>
 			</properties>
 			<!-- <build>
 				<plugins>
@@ -135,9 +136,37 @@
 			
 		</profile>
 		<profile>
+			<id>qual</id>
+			<properties>
+				<spring.profiles.active>qual</spring.profiles.active>
+				<rp.build.warname>meteoqual</rp.build.warname>
+			</properties>
+			<!-- <build>
+				<plugins>
+					<plugin>
+						<groupId>org.springframework.boot</groupId>
+						<artifactId>spring-boot-maven-plugin</artifactId>
+						<configuration>
+							<profiles>
+								<profile>prod</profile>
+							</profiles>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build> -->
+			<dependencies>
+				<dependency>
+					<groupId>org.postgresql</groupId>
+					<artifactId>postgresql</artifactId>
+					<scope>runtime</scope>
+		</dependency>
+			</dependencies>
+		</profile>
+		<profile>
 			<id>prod</id>
 			<properties>
 				<spring.profiles.active>prod</spring.profiles.active>
+				<rp.build.warname>meteoprod</rp.build.warname>
 			</properties>
 			<!-- <build>
 				<plugins>
@@ -164,7 +193,7 @@
 	</profiles>
 
 	<build>
-		<finalName>meteo</finalName>
+<!-- 		<finalName>meteo</finalName> -->
 		<plugins>
 			<!--<plugin>
 				<groupId>org.springframework.boot</groupId>
@@ -195,6 +224,13 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+			<plugin>
+    			<artifactId>maven-war-plugin</artifactId>
+    			<configuration>
+        			<packagingExcludes>WEB-INF/web.xml</packagingExcludes>
+        			<warName>${rp.build.warname}</warName>
+    			</configuration>
 			</plugin>
 		</plugins>
 	</build>
