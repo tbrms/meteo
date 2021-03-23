@@ -34,6 +34,7 @@ build/
 /src/main/resources/config.properties
 /src/main/resources/application-dev.properties
 /src/main/resources/application-prod.properties
+/src/main/resources/application-qual.properties
 /logs
 .mvn
 .DS_Store
