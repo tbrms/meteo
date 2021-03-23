@@ -6,11 +6,8 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Properties;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Profile;
-import org.springframework.core.env.Environment;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -22,7 +19,7 @@ public class ConfigService {
     private static final String CHEMIN_CONFIG = "src/main/resources/config.properties";
 	//private static final String CHEMIN_CONFIG = "src/main/webapp/WEB-INF/config.properties";
 	
-	private static Logger logger = LoggerFactory.getLogger(ConfigService.class);
+	private static Logger logger = LogManager.getLogger(ConfigService.class);
 
 	public static Properties readPropertiesFile(String fileName) throws Exception {
 		File propertieFile = new File(fileName);

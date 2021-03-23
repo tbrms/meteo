@@ -1,25 +1,24 @@
 package toma.meteo.service;
 
 import com.googlecode.jmapper.JMapper;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
-import org.springframework.test.context.ActiveProfiles;
 import toma.meteo.bean.BulletinMeteo;
 import toma.meteo.bean.ReleveMeteo;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.Date;
 import java.util.Optional;
-import java.util.Properties;
 
 //@ActiveProfiles({"prod","profiltoma"})
 @Service
 public class ArduinoService {
 
-    private static Logger logger = LoggerFactory.getLogger(ArduinoService.class);
+    private static Logger logger = LogManager.getLogger(ArduinoService.class);
 
     private static final String HTTP = "http://";
 

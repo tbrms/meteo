@@ -6,13 +6,10 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Random;
 
-import toma.meteo.service.ArduinoService;
-import toma.meteo.service.BulletinMeteoService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,13 +18,16 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.googlecode.jmapper.JMapper;
+
 import toma.meteo.bean.BulletinMeteo;
 import toma.meteo.bean.ReleveMeteo;
+import toma.meteo.service.ArduinoService;
+import toma.meteo.service.BulletinMeteoService;
 
 @RestController
 public class ReleveMeteoController {
 	
-	Logger logger = LoggerFactory.getLogger(ReleveMeteoController.class);
+	Logger logger = LogManager.getLogger(ReleveMeteoController.class);
 	
 	private ReleveMeteo releveMeteo;
 

@@ -25,7 +25,8 @@ public class OrdonnanceurService {
 
 	private RestTemplate restTemplate = new RestTemplate();
 
-	@Scheduled(cron = "0 0 * * * *")
+	//@Scheduled(cron = "0 0 * * * *")
+	@Scheduled(cron = "${cron.expression}")
 	public void insertBulletinMeteo() {
 		Optional<BulletinMeteo> bulletinMeteo = arduinoService.getBulletinMeteo();
 
