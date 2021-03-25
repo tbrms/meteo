@@ -20,7 +20,7 @@ public class JMapperTest {
 	
 	@Test
 	public void mapperReleveMeteoToBulletinMeteo() {
-		BigDecimal temperature = new BigDecimal(20.0).setScale(2, RoundingMode.HALF_UP);;
+		BigDecimal temperature = new BigDecimal(20.0).setScale(1, RoundingMode.HALF_UP);
 		//BigDecimal temperatureControle = new BigDecimal(temperature);
 		int pression = 1014;
 		int humidite = 50;
@@ -29,7 +29,6 @@ public class JMapperTest {
 		JMapper<BulletinMeteo,ReleveMeteo> mapper = 
 				new JMapper<BulletinMeteo, ReleveMeteo>(BulletinMeteo.class, ReleveMeteo.class);
 		
-		
 		BulletinMeteo bulletinMeteo = mapper.getDestination(releveMeteo);
 		
 		assertNotNull(bulletinMeteo);
@@ -37,6 +36,4 @@ public class JMapperTest {
 		assertEquals(pression, bulletinMeteo.getPression());
 		assertEquals(humidite, bulletinMeteo.getHumidite());
 	}
-
-
 }

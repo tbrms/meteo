@@ -23,9 +23,9 @@ public class ReleveMeteo {
 	private float pression;
 	private float humidite;
 	
+	@Override
 	public String toString() {
-		return "Releve meteo: Temperature=" + this.temperature + ", Pression=" + this.pression
-				+ ", Humidite=" + this.humidite;
+		return String.format("Releve meteo[Temperature='%s', Pression='%s', Humidite='%s']", 
+				temperature, pression, humidite);
 	}
-
 }

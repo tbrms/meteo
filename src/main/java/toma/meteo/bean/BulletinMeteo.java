@@ -5,6 +5,7 @@ import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -36,6 +37,7 @@ public class BulletinMeteo {
 	private long id;
 	private Date date;
 	@JMap
+	@Column(precision = 3,scale = 1)
 	private BigDecimal temperature;
 	@JMap
 	private int pression;
@@ -44,17 +46,24 @@ public class BulletinMeteo {
 	
 	@JMapConversion(from={"pression"}, to={"pression"})
     public int conversionPression(float pression){
-		return (int)pression;
+		return Math.round(pression);
     }
 	
 	@JMapConversion(from={"humidite"}, to={"humidite"})
     public int conversionHumidite(float humidite){
-		return (int)humidite;
+		return Math.round(humidite);
     }
 	
+	// On fait une conversion pour que tous les bulletins aient 1 chiffre apres la virgule
+	// avant ou apres la persistance
 	@JMapConversion(from={"temperature"}, to={"temperature"})
-    public BigDecimal conversionTemperature(BigDecimal temperature){
-		//BigDecimal temperatureBigDecimal = BigDecimal.valueOf(temperature);
-		return temperature.setScale(2, RoundingMode.HALF_UP);
-    }
+	public BigDecimal conversionTemperature(BigDecimal temperature){
+	    return temperature.setScale(1, RoundingMode.HALF_UP);
+	}
+	
+	@Override
+	public String toString() {
+		return String.format("Buletin meteo[id=%d, Temperature='%s', Pression='%s', Humidite='%s']", 
+				id, temperature, pression, humidite);
+	}
 }
