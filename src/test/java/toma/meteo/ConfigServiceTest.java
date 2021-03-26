@@ -2,9 +2,9 @@ package toma.meteo;
 
 import java.util.Properties;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.junit.jupiter.api.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import org.springframework.test.context.ActiveProfiles;
@@ -16,7 +16,7 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 //@ActiveProfiles("profiltoma,prod")
 public class ConfigServiceTest {
 	
-	Logger logger = LoggerFactory.getLogger(ConfigServiceTest.class);
+	Logger logger = LogManager.getLogger(ConfigServiceTest.class);
 
 	/**
 	 * Test de recuperation des proprietes de la config
