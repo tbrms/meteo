@@ -86,30 +86,20 @@
 			<version>4.4</version>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-war-plugin -->
-		<dependency>
+		<!-- <dependency>
 			<groupId>org.apache.maven.plugins</groupId>
 			<artifactId>maven-war-plugin</artifactId>
 			<version>3.3.1</version>
-		</dependency>
+		</dependency> -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-test</artifactId>
 		</dependency>
-	<!-- 	<dependency>
-			<groupId>com.h2database</groupId>
-			<artifactId>h2</artifactId>
-			<scope>runtime</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.postgresql</groupId>
-			<artifactId>postgresql</artifactId>
-			<scope>runtime</scope>
-		</dependency> -->
 		<!-- https://mvnrepository.com/artifact/org.apache.httpcomponents/httpclient -->
-		<!-- <dependency>
+		<dependency>
 		    <groupId>org.apache.httpcomponents</groupId>
 		    <artifactId>httpclient</artifactId> 
-		</dependency>	 -->
+		</dependency>
 	</dependencies>
 	<profiles>
 		<profile>
@@ -121,27 +111,13 @@
 				<spring.profiles.active>dev</spring.profiles.active>
 				<rp.build.warname>meteodev</rp.build.warname>
 			</properties>
-			<!-- <build>
-				<plugins>
-					<plugin>
-						<groupId>org.springframework.boot</groupId>
-						<artifactId>spring-boot-maven-plugin</artifactId>
-						<configuration>
-							<profiles>
-								<profile>profiltoma</profile>
-							</profiles>
-						</configuration>
-					</plugin>
-				</plugins>
-			</build> -->
 			<dependencies>
 				<dependency>
 					<groupId>com.h2database</groupId>
 					<artifactId>h2</artifactId>
 					<scope>runtime</scope>
 				</dependency>
-			</dependencies>
-			
+			</dependencies>			
 		</profile>
 		<profile>
 			<id>qual</id>
@@ -149,25 +125,11 @@
 				<spring.profiles.active>qual</spring.profiles.active>
 				<rp.build.warname>meteoqual</rp.build.warname>
 			</properties>
-			<!-- <build>
-				<plugins>
-					<plugin>
-						<groupId>org.springframework.boot</groupId>
-						<artifactId>spring-boot-maven-plugin</artifactId>
-						<configuration>
-							<profiles>
-								<profile>prod</profile>
-							</profiles>
-						</configuration>
-					</plugin>
-				</plugins>
-			</build> -->
 			<dependencies>
 				<dependency>
 					<groupId>org.postgresql</groupId>
 					<artifactId>postgresql</artifactId>
-					<scope>runtime</scope>
-		</dependency>
+				</dependency>
 			</dependencies>
 		</profile>
 		<profile>
@@ -176,59 +138,17 @@
 				<spring.profiles.active>prod</spring.profiles.active>
 				<rp.build.warname>meteoprod</rp.build.warname>
 			</properties>
-			<!-- <build>
-				<plugins>
-					<plugin>
-						<groupId>org.springframework.boot</groupId>
-						<artifactId>spring-boot-maven-plugin</artifactId>
-						<configuration>
-							<profiles>
-								<profile>prod</profile>
-							</profiles>
-						</configuration>
-					</plugin>
-				</plugins>
-			</build> -->
 			<dependencies>
 				<dependency>
 					<groupId>org.postgresql</groupId>
 					<artifactId>postgresql</artifactId>
 					<scope>runtime</scope>
-		</dependency>
+				</dependency>
 			</dependencies>
-			
 		</profile>
 	</profiles>
-
 	<build>
-<!-- 		<finalName>meteo</finalName> -->
 		<plugins>
-			<!--<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-				<configuration>
-					<profiles>
-						<profile>dev</profile>
-					</profiles>
-				</configuration>
-			</plugin>-->
-			<!--<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-war-plugin</artifactId>
-				<version>3.3.1</version>
-				<configuration>
-					<webResources>
-						<resource>
-							<directory>${basedir}/src/main/webapp/WEB-INF</directory>
-							<filtering>false</filtering>
-							<targetPath>WEB-INF</targetPath>
-							<includes>
-								<include>*</include>
-							</includes>
-						</resource>
-					</webResources>
-				</configuration>
-			</plugin>-->
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
@@ -242,5 +162,4 @@
 			</plugin>
 		</plugins>
 	</build>
-
 </project>
