@@ -1,7 +1,5 @@
 package toma.meteo.bean;
 
-import java.math.BigDecimal;
-
 import org.springframework.stereotype.Component;
 
 import lombok.AccessLevel;
@@ -19,7 +17,7 @@ import lombok.experimental.FieldDefaults;
 @Component
 public class ReleveMeteo {
 
-	private BigDecimal temperature;
+	private float temperature;
 	private float pression;
 	private float humidite;
 	

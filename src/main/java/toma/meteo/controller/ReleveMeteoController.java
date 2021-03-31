@@ -1,6 +1,5 @@
 package toma.meteo.controller;
 
-import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -8,6 +7,7 @@ import java.util.Random;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,8 +16,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.googlecode.jmapper.JMapper;
 
 import toma.meteo.bean.BulletinMeteo;
 import toma.meteo.bean.ReleveMeteo;
@@ -30,6 +28,9 @@ public class ReleveMeteoController {
 	Logger logger = LogManager.getLogger(ReleveMeteoController.class);
 	
 	private ReleveMeteo releveMeteo;
+	
+	@Autowired
+	ModelMapper mapper;
 
 	@Autowired
 	BulletinMeteoService releveMeteoService;
@@ -90,10 +91,8 @@ public class ReleveMeteoController {
 	public void create(@RequestBody ReleveMeteo releveMeteo) {
 		logger.debug("Releve Meteo: "+releveMeteo.toString());
 		
-		JMapper<BulletinMeteo,ReleveMeteo> mapper = 
-				new JMapper<BulletinMeteo, ReleveMeteo>(BulletinMeteo.class, ReleveMeteo.class);
-
-		BulletinMeteo bulletinMeteo = mapper.getDestination(releveMeteo);
+		BulletinMeteo bulletinMeteo = 
+				this.mapper.map(releveMeteo, BulletinMeteo.class);
 
 		bulletinMeteo.setDate(new Date());
 
@@ -103,10 +102,9 @@ public class ReleveMeteoController {
 	/*
 	 * Recuperer une temperature fictive
 	 */
-	private BigDecimal getRandomTemp() {
+	private float getRandomTemp() {
 		Random r = new Random();
-		float random = r.nextInt(20) + 10;
-		return new BigDecimal(random);
+		return (float) r.nextInt(20) + 10;
 	}
 	
 	/*

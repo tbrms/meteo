@@ -1,9 +1,9 @@
 package toma.meteo.service;
 
-import com.googlecode.jmapper.JMapper;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import toma.meteo.bean.BulletinMeteo;
@@ -21,6 +21,9 @@ public class ArduinoService {
     private static Logger logger = LogManager.getLogger(ArduinoService.class);
 
     private static final String HTTP = "http://";
+    
+    @Autowired
+	ModelMapper mapper;
 
     @Autowired
     private Environment environment;
@@ -45,10 +48,8 @@ public class ArduinoService {
             if(releveMeteo != null){
                 logger.debug(releveMeteo.toString());
 
-                JMapper<BulletinMeteo,ReleveMeteo> mapper =
-                        new JMapper<BulletinMeteo, ReleveMeteo>(BulletinMeteo.class, ReleveMeteo.class);
-
-                bulletinMeteo = mapper.getDestination(releveMeteo);
+                bulletinMeteo = 
+        				this.mapper.map(releveMeteo, BulletinMeteo.class);
 
                 if(bulletinMeteo != null){
                     bulletinMeteo.setDate(new Date());
