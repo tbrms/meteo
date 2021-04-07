@@ -129,6 +129,7 @@
 				<dependency>
 					<groupId>org.postgresql</groupId>
 					<artifactId>postgresql</artifactId>
+					<scope>provided</scope>
 				</dependency>
 			</dependencies>
 		</profile>
@@ -142,7 +143,7 @@
 				<dependency>
 					<groupId>org.postgresql</groupId>
 					<artifactId>postgresql</artifactId>
-					<scope>runtime</scope>
+					<scope>provided</scope>
 				</dependency>
 			</dependencies>
 		</profile>
