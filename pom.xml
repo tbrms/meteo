@@ -12,7 +12,7 @@
 	<artifactId>meteo</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
-<!-- 	<name>meteo</name> -->
+	<name>meteo</name>
 	<description>Station meteo</description>
 
 	<properties>
@@ -117,7 +117,7 @@
 					<artifactId>h2</artifactId>
 					<scope>runtime</scope>
 				</dependency>
-			</dependencies>			
+			</dependencies>	
 		</profile>
 		<profile>
 			<id>qual</id>
