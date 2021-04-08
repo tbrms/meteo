@@ -9,7 +9,7 @@ import org.modelmapper.spi.MappingContext;
 import toma.meteo.bean.BulletinMeteoExt;
 import toma.meteo.bean.ReleveMeteo;
 
-public class ReleveMeteoToBulletinMeteoConverter implements Converter<ReleveMeteo, BulletinMeteoExt> {
+public class ReleveMeteoToBulletinMeteoExtConverter implements Converter<ReleveMeteo, BulletinMeteoExt> {
 	
 	@Override
 	public BulletinMeteoExt convert(MappingContext<ReleveMeteo, BulletinMeteoExt> context) {
