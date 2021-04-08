@@ -1,18 +1,19 @@
 package toma.meteo.service;
 
 
+import java.time.LocalDateTime;
+import java.util.Optional;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
-import toma.meteo.bean.BulletinMeteo;
-import toma.meteo.bean.ReleveMeteo;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.Date;
-import java.util.Optional;
+import toma.meteo.bean.BulletinMeteoExt;
+import toma.meteo.bean.ReleveMeteo;
 
 //@ActiveProfiles({"prod","profiltoma"})
 @Service
@@ -28,10 +29,10 @@ public class ArduinoService {
     @Autowired
     private Environment environment;
 
-    public Optional<BulletinMeteo> getBulletinMeteo(){
+    public Optional<BulletinMeteoExt> getBulletinMeteo(){
 
         RestTemplate restTemplate = new RestTemplate();
-        BulletinMeteo bulletinMeteo = null;
+        BulletinMeteoExt bulletinMeteo = null;
 
         try {
             //Properties properties = ConfigService.getConfig();
@@ -49,10 +50,10 @@ public class ArduinoService {
                 logger.debug(releveMeteo.toString());
 
                 bulletinMeteo = 
-        				this.mapper.map(releveMeteo, BulletinMeteo.class);
+        				this.mapper.map(releveMeteo, BulletinMeteoExt.class);
 
                 if(bulletinMeteo != null){
-                    bulletinMeteo.setDate(new Date());
+                    bulletinMeteo.setDate(LocalDateTime.now());
                     return Optional.of(bulletinMeteo);
                 } else {
                     logger.error("Le bulletin meteo est nul. Verifier le mapper.");

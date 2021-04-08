@@ -13,7 +13,7 @@ import org.springframework.web.client.RestTemplate;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import toma.meteo.bean.BulletinMeteo;
+import toma.meteo.bean.BulletinMeteoExt;
 import toma.meteo.bean.ReleveMeteo;
 import toma.meteo.service.BulletinMeteoService;
 
@@ -47,7 +47,7 @@ public class ArduinoTest {
         ObjectMapper mapper = new ObjectMapper();
         mapper.enable(DeserializationFeature.USE_BIG_DECIMAL_FOR_FLOATS);
 
-        BulletinMeteo releveMeteo = restTemplate.getForObject(uri, BulletinMeteo.class);
+        BulletinMeteoExt releveMeteo = restTemplate.getForObject(uri, BulletinMeteoExt.class);
         
         logger.debug(releveMeteo.toString());
 

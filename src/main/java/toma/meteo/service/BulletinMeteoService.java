@@ -1,18 +1,17 @@
 package toma.meteo.service;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import toma.meteo.bean.BulletinMeteo;
-import toma.meteo.repository.BulletinMeteoRepository;
 
 import org.apache.commons.collections4.IterableUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import toma.meteo.bean.BulletinMeteoExt;
+import toma.meteo.repository.BulletinMeteoRepository;
 
 @Service
 public class BulletinMeteoService {
@@ -22,36 +21,36 @@ public class BulletinMeteoService {
 	
 	private static Logger logger = LogManager.getLogger(BulletinMeteoService.class);
 
-	public void ajouter(BulletinMeteo bulletinMeteo) {
+	public void ajouter(BulletinMeteoExt bulletinMeteo) {
 		logger.debug("Ajout en BDD: " + bulletinMeteo.toString());
 		bulletinMeteoRepository.save(bulletinMeteo);
 	}
 	
-	public void effacer(BulletinMeteo bulletinMeteo) {
+	public void effacer(BulletinMeteoExt bulletinMeteo) {
 		bulletinMeteoRepository.delete(bulletinMeteo);
 	}
 	
-	public Optional<BulletinMeteo> lire(BulletinMeteo bulletinMeteo) {
+	public Optional<BulletinMeteoExt> lire(BulletinMeteoExt bulletinMeteo) {
 		 return bulletinMeteoRepository.findById(bulletinMeteo.getId());
 	}
-	public BulletinMeteo lireByDate(Date date) {
+	public BulletinMeteoExt lireByDate(LocalDateTime date) {
 		return bulletinMeteoRepository.findByDate(date);
 	}
 
-	public List<BulletinMeteo> lireTous() {
+	public List<BulletinMeteoExt> lireTous() {
 		//FIXME adapter iterable vers list
 		return IterableUtils.toList(bulletinMeteoRepository.findAll());
 	}
 
-	public List<BulletinMeteo> lireEntreDate(Date dateDebut, Date dateFin){
+	public List<BulletinMeteoExt> lireEntreDate(LocalDateTime dateDebut, LocalDateTime dateFin){
 		return bulletinMeteoRepository.findAllByDateBetween(dateDebut, dateFin);
 	}
 
-	public BulletinMeteo getLast(){
+	public BulletinMeteoExt getLast(){
 		return bulletinMeteoRepository.findFirstByOrderByDateDesc();
 	}
 	
-	public List<BulletinMeteo> getDerniersBulletins(int n){
+	public List<BulletinMeteoExt> getDerniersBulletins(int n){
 		return bulletinMeteoRepository.getDerniersBulletins(n);
 	}
 }

@@ -1,6 +1,6 @@
 package toma.meteo.service;
 
-import toma.meteo.bean.BulletinMeteo;
+import toma.meteo.bean.BulletinMeteoExt;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -33,7 +33,7 @@ public class OrdonnanceurService {
 	//@Scheduled(cron = "0 0 * * * *")
 	@Scheduled(cron = "${cron.expression}")
 	public void insertBulletinMeteo() {
-		Optional<BulletinMeteo> bulletinMeteo = arduinoService.getBulletinMeteo();
+		Optional<BulletinMeteoExt> bulletinMeteo = arduinoService.getBulletinMeteo();
 		logger.debug("Recuperation d'un releve depuis Arduino: " + bulletinMeteo.toString());
 		if(bulletinMeteo.isPresent()){
 			bulletinMeteoService.ajouter(bulletinMeteo.get());

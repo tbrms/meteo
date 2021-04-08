@@ -6,20 +6,17 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.Month;
-import java.time.ZoneId;
-import java.util.Date;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import org.springframework.test.context.ActiveProfiles;
-import toma.meteo.bean.BulletinMeteo;
+import toma.meteo.bean.BulletinMeteoExt;
 import toma.meteo.service.BulletinMeteoService;
+import toma.meteo.utils.DateUtils;
 
 @SpringBootTest
 //@ActiveProfiles("profiltoma,prod")
@@ -42,10 +39,10 @@ class BulletinMeteoServiceTest {
 	 */
 	@Test
 	public void insererTemperature() {
-		Date date = new Date();
+		LocalDateTime date = LocalDateTime.now();
 
-		BulletinMeteo bulletinMeteo = getBulletinMeteo(date);
-		BulletinMeteo bulletinMeteoRetour = new BulletinMeteo();
+		BulletinMeteoExt bulletinMeteo = getBulletinMeteo(date);
+		BulletinMeteoExt bulletinMeteoRetour = new BulletinMeteoExt();
 
 		bulletinMeteoService.ajouter(bulletinMeteo);
 		
@@ -67,41 +64,45 @@ class BulletinMeteoServiceTest {
 	 */
 	@Test
 	public void getBulletinMeteoBetweenDate(){
-		LocalDateTime localDate = LocalDateTime.of(2000,01,01,00,05);
-		LocalDateTime localDateDebut = LocalDateTime.of(2000,01,01,00,00);
-		LocalDateTime localDateFin = LocalDateTime.of(2000,01,01,00,10);
+		
+		LocalDateTime date = LocalDateTime.parse("2000-01-01,00:00:05",DateUtils.FORMATTER);
+		LocalDateTime dateDebut = LocalDateTime.parse("2000-01-01,00:00:00",DateUtils.FORMATTER);
+		LocalDateTime dateFin = LocalDateTime.parse("2000-01-01,00:00:10",DateUtils.FORMATTER);
 
-		Date date = Date.from(localDateDebut.atZone(ZoneId.systemDefault()).toInstant());
-		Date dateDebut = Date.from(localDateDebut.atZone(ZoneId.systemDefault()).toInstant());
-		Date dateFin = Date.from(localDateFin.atZone(ZoneId.systemDefault()).toInstant());
+		/*
+		 * Date date =
+		 * Date.from(localDateDebut.atZone(ZoneId.systemDefault()).toInstant()); Date
+		 * dateDebut =
+		 * Date.from(localDateDebut.atZone(ZoneId.systemDefault()).toInstant()); Date
+		 * dateFin = Date.from(localDateFin.atZone(ZoneId.systemDefault()).toInstant());
+*/
+		BulletinMeteoExt bulletinMeteoExt = getBulletinMeteo(date);
+		//bulletinMeteoExt.setDate(date);
 
-		BulletinMeteo bulletinMeteo = getBulletinMeteo(date);
-		bulletinMeteo.setDate(date);
+		bulletinMeteoService.ajouter(bulletinMeteoExt);
 
-		bulletinMeteoService.ajouter(bulletinMeteo);
-
-		List<BulletinMeteo> listeBulletin = bulletinMeteoService.lireEntreDate(dateDebut, dateFin);
+		List<BulletinMeteoExt> listeBulletin = bulletinMeteoService.lireEntreDate(dateDebut, dateFin);
 
 		assertNotNull(listeBulletin, "La liste est null");
 		assertEquals(1,listeBulletin.size(), "La taille de la liste est differente de 1");
 		assertEquals(date, listeBulletin.get(0).getDate(), "La date n'est pas correcte");
 
-		bulletinMeteoService.effacer(bulletinMeteo);
+		bulletinMeteoService.effacer(bulletinMeteoExt);
 	}
 
 	/**
 	 * Creation d'un bulletin meteo
 	 * @return le bulletin meteo cree
 	 */
-	private BulletinMeteo getBulletinMeteo(Date date) {
-		BulletinMeteo bulletinMeteo = new BulletinMeteo();
+	private BulletinMeteoExt getBulletinMeteo(LocalDateTime date) {
+		BulletinMeteoExt bulletinMeteoExt = new BulletinMeteoExt();
 
-		bulletinMeteo.setDate(date);
-		bulletinMeteo.setTemperature(TEMP);
-		bulletinMeteo.setPression(PRESSION);
-		bulletinMeteo.setHumidite(HUMIDITE);
+		bulletinMeteoExt.setDate(date);
+		bulletinMeteoExt.setTemperature(TEMP);
+		bulletinMeteoExt.setPression(PRESSION);
+		bulletinMeteoExt.setHumidite(HUMIDITE);
 
-		return bulletinMeteo;
+		return bulletinMeteoExt;
 	}
 
 }

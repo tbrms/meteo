@@ -1,6 +1,6 @@
 package toma.meteo.controller;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.Random;
@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import toma.meteo.bean.BulletinMeteo;
+import toma.meteo.bean.BulletinMeteoExt;
 import toma.meteo.bean.ReleveMeteo;
 import toma.meteo.service.ArduinoService;
 import toma.meteo.service.BulletinMeteoService;
@@ -57,7 +57,7 @@ public class ReleveMeteoController {
 	 * Recuperer le dernier bulletin meteo en BDD
 	 */
 	@GetMapping("/getLastBulletinMeteo")
-	public BulletinMeteo getLastReleveMeteo() {
+	public BulletinMeteoExt getLastReleveMeteo() {
 		return releveMeteoService.getLast();
 	}
 	
@@ -66,7 +66,7 @@ public class ReleveMeteoController {
 	 */
 	@GetMapping(value = "/releves/{n}", produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
-	public List<BulletinMeteo> getDerniersBulletins(@PathVariable("n") int n) {
+	public List<BulletinMeteoExt> getDerniersBulletins(@PathVariable("n") int n) {
 		return releveMeteoService.getDerniersBulletins(n);
 	}
 	
@@ -75,8 +75,8 @@ public class ReleveMeteoController {
 	 */
 	//@CrossOrigin(origins = "*")
 	@GetMapping("/getBulletinMeteoNow")
-	public BulletinMeteo getReleveMeteoNow() {
-		Optional<BulletinMeteo> bulletin = arduinoService.getBulletinMeteo();
+	public BulletinMeteoExt getReleveMeteoNow() {
+		Optional<BulletinMeteoExt> bulletin = arduinoService.getBulletinMeteo();
 		if (bulletin.isPresent()) {
 			return bulletin.get();
 		} else {
@@ -91,10 +91,10 @@ public class ReleveMeteoController {
 	public void create(@RequestBody ReleveMeteo releveMeteo) {
 		logger.debug("Releve Meteo: "+releveMeteo.toString());
 		
-		BulletinMeteo bulletinMeteo = 
-				this.mapper.map(releveMeteo, BulletinMeteo.class);
+		BulletinMeteoExt bulletinMeteo = 
+				this.mapper.map(releveMeteo, BulletinMeteoExt.class);
 
-		bulletinMeteo.setDate(new Date());
+		bulletinMeteo.setDate(LocalDateTime.now());
 
 		releveMeteoService.ajouter(bulletinMeteo);
 	}

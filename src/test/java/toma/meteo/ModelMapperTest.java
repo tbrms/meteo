@@ -11,7 +11,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import toma.meteo.bean.BulletinMeteo;
+import toma.meteo.bean.BulletinMeteoExt;
 import toma.meteo.bean.ReleveMeteo;
 
 @SpringBootTest
@@ -37,7 +37,7 @@ public class ModelMapperTest {
 		
 		ReleveMeteo releveMeteo = new ReleveMeteo(temperature, pression, humidite);
 		
-		BulletinMeteo bulletinMeteo = mapper.map(releveMeteo, BulletinMeteo.class);
+		BulletinMeteoExt bulletinMeteo = mapper.map(releveMeteo, BulletinMeteoExt.class);
 		
 		assertNotNull(bulletinMeteo);
 		assertEquals(temperatureDestination, bulletinMeteo.getTemperature());
@@ -56,7 +56,7 @@ public class ModelMapperTest {
 		
 		releveMeteo = new ReleveMeteo(temperature, pression, humidite);
 		
-		bulletinMeteo = mapper.map(releveMeteo, BulletinMeteo.class);
+		bulletinMeteo = mapper.map(releveMeteo, BulletinMeteoExt.class);
 		
 		assertNotNull(bulletinMeteo);
 		assertEquals(temperatureDestination, bulletinMeteo.getTemperature());
@@ -75,7 +75,7 @@ public class ModelMapperTest {
 		
 		releveMeteo = new ReleveMeteo(temperature, pression, humidite);
 		
-		bulletinMeteo = mapper.map(releveMeteo, BulletinMeteo.class);
+		bulletinMeteo = mapper.map(releveMeteo, BulletinMeteoExt.class);
 		
 		assertNotNull(bulletinMeteo);
 		assertEquals(temperatureDestination, bulletinMeteo.getTemperature());
