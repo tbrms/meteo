@@ -18,12 +18,14 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import io.swagger.annotations.Api;
 import toma.meteo.bean.BulletinMeteoExt;
 import toma.meteo.bean.ReleveMeteo;
 import toma.meteo.service.ArduinoService;
 import toma.meteo.service.BulletinMeteoService;
 
 @RestController
+@Api(value = "ReleveMeteoController")
 public class ReleveMeteoController {
 	
 	Logger logger = LogManager.getLogger(ReleveMeteoController.class);
@@ -52,37 +54,6 @@ public class ReleveMeteoController {
 		releveMeteo.setPression(getRandomPression());
 		releveMeteo.setHumidite(getRandomHumidite());
 		return releveMeteo;
-	}
-	
-	/*
-	 * Recuperer le dernier bulletin meteo en BDD
-	 */
-	@GetMapping("/getLastBulletinMeteo")
-	public BulletinMeteoExt getLastReleveMeteo() {
-		return releveMeteoService.getLast();
-	}
-	
-	/*
-	 * Recuperer les n derniers bulletins en BDD
-	 */
-	@GetMapping(value = "/releves/{n}", produces = MediaType.APPLICATION_JSON_VALUE)
-	@ResponseBody
-	public List<BulletinMeteoExt> getDerniersBulletins(@PathVariable("n") int n) {
-		return releveMeteoService.getDerniersBulletins(n);
-	}
-	
-	/*
-	 * Recuperer un bulletin meteo en direct
-	 */
-	@CrossOrigin(origins = "*")
-	@GetMapping("/getBulletinMeteoNow")
-	public BulletinMeteoExt getReleveMeteoNow() {
-		Optional<BulletinMeteoExt> bulletin = arduinoService.getBulletinMeteo();
-		if (bulletin.isPresent()) {
-			return bulletin.get();
-		} else {
-			return null;
-		}
 	}
 	
 	/*
