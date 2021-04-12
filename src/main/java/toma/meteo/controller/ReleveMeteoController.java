@@ -9,6 +9,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,9 +17,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import toma.meteo.bean.BulletinMeteoExt;
 import toma.meteo.bean.ReleveMeteo;
 import toma.meteo.service.ArduinoService;
@@ -48,6 +53,10 @@ public class ReleveMeteoController {
 	/*
 	 * Recuperer un bulletin meteo fictif
 	 */
+	@ResponseStatus(code = HttpStatus.OK)
+	@ApiOperation(value = "Obtenir le releve meteo fictif", response = ReleveMeteo.class)
+	@ApiResponses(value = { @ApiResponse(code = 200, message = "Relevé envoyé"),
+			@ApiResponse(code = 500, message = "Erreur interne du serveur") })
 	@GetMapping("/getReleveMeteo")
 	public ReleveMeteo getReleveMeteo() {
 		releveMeteo.setTemperature(getRandomTemp());
@@ -59,6 +68,10 @@ public class ReleveMeteoController {
 	/*
 	 * Inserer un bulletin meteo en BDD
 	 */
+	@ResponseStatus(code = HttpStatus.CREATED)
+	@ApiOperation(value = "Insérer un relevé en BDD", response = BulletinMeteoExt.class)
+	@ApiResponses(value = { @ApiResponse(code = 200, message = "Relevé inséré"),
+			@ApiResponse(code = 500, message = "Erreur interne du serveur") })
 	@PostMapping("/insertReleveMeteo")
 	public void create(@RequestBody ReleveMeteo releveMeteo) {
 		logger.debug("Releve Meteo: "+releveMeteo.toString());
