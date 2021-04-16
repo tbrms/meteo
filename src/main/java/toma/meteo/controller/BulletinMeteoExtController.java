@@ -74,7 +74,7 @@ public class BulletinMeteoExtController {
 	@ApiOperation(value = "Obtenir un bulletin météo instantané", response = BulletinMeteoExt.class)
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "Bulletin météo instantané"),
 			@ApiResponse(code = 500, message = "Erreur interne du serveur") })
-	@CrossOrigin(origins = "*")
+	//@CrossOrigin(origins = "*")
 	@GetMapping("/getReleveMeteoInstantane")
 	public BulletinMeteoExt getReleveMeteoInstantane() {
 		Optional<BulletinMeteoExt> bulletin = arduinoService.getBulletinMeteo();

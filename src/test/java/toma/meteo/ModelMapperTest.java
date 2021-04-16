@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.time.LocalDateTime;
 
 import org.junit.jupiter.api.Test;
 import org.modelmapper.ModelMapper;
@@ -13,6 +14,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import toma.meteo.bean.BulletinMeteoExt;
 import toma.meteo.bean.ReleveMeteo;
+import toma.meteo.dto.TemperatureDto;
+import toma.meteo.utils.DateUtils;
 
 @SpringBootTest
 public class ModelMapperTest {
@@ -81,5 +84,22 @@ public class ModelMapperTest {
 		assertEquals(temperatureDestination, bulletinMeteo.getTemperature());
 		assertEquals(pressionDestination, bulletinMeteo.getPression());
 		assertEquals(humiditeDestination, bulletinMeteo.getHumidite());
+	}
+	
+	@Test
+	void mapperBulletinMeteoExtToTemperatureDto() {
+		BulletinMeteoExt bulletinMeteoExt = new BulletinMeteoExt();
+		TemperatureDto temperatureDto = new TemperatureDto();
+		
+		LocalDateTime date = LocalDateTime.now();
+		BigDecimal temperature = new BigDecimal("20.5");
+		
+		bulletinMeteoExt.setDate(date);
+		bulletinMeteoExt.setTemperature(temperature);
+		
+		mapper.map(bulletinMeteoExt,temperatureDto);
+		
+		assertEquals(date.format(DateUtils.FORMATTER_COURT),temperatureDto.getName());
+		assertEquals(temperature, temperatureDto.getValue());
 	}
 }
