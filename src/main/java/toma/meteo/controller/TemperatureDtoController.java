@@ -1,7 +1,6 @@
 package toma.meteo.controller;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
@@ -40,6 +39,7 @@ Logger logger = LogManager.getLogger(TemperatureDtoController.class);
 	
 	/*
 	 * Obtenir les n dernieres temperatures avec une date formatee
+	 * pour affichage par le front end
 	 */
 	@ResponseStatus(code = HttpStatus.OK)
 	@ApiOperation(value = "Obtenir les n dernierestemperatures les plus recentes en BDD", response = BulletinMeteoExt.class)
@@ -64,7 +64,6 @@ Logger logger = LogManager.getLogger(TemperatureDtoController.class);
 		temperatureDtoSeries.setSeries(listeTemperatureDto);
 		temperatureDtoSeries.setName("Temperature");
 		
-		//mapper.map(listeBulletinMeteoExt, temperatureDtoSeries);
 		return temperatureDtoSeries;
 	}
 

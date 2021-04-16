@@ -1,24 +1,17 @@
 package toma.meteo.service;
 
-import toma.meteo.bean.BulletinMeteoExt;
+import java.util.Optional;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
 
-import java.util.Optional;
+import toma.meteo.bean.BulletinMeteoExt;
 
 @Service
 public class OrdonnanceurService {
-	
-	//TODO A supprimer
-	private static final String HOST="localhost";
-	private static final String PORT="8081";
-	private static final String CONTEXT="meteo";
-	private static final String REQUEST="getReleveMeteo";
 	
 	private static Logger logger = LogManager.getLogger(OrdonnanceurService.class);
 
@@ -28,9 +21,9 @@ public class OrdonnanceurService {
 	@Autowired
 	ArduinoService arduinoService;
 
-	private RestTemplate restTemplate = new RestTemplate();
-
-	//@Scheduled(cron = "0 0 * * * *")
+	/**
+	 * Inserer regulierement un releve de l'Arduino en BDD
+	 */
 	@Scheduled(cron = "${cron.expression}")
 	public void insertBulletinMeteo() {
 		Optional<BulletinMeteoExt> bulletinMeteo = arduinoService.getBulletinMeteo();

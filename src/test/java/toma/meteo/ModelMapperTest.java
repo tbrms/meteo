@@ -23,7 +23,7 @@ public class ModelMapperTest {
 	@Autowired
 	ModelMapper mapper;
 	
-	/*
+	/**
 	 * Test du mapping d'une ReleveMeteo en BulletinMeteo
 	 */
 	@Test
@@ -86,6 +86,9 @@ public class ModelMapperTest {
 		assertEquals(humiditeDestination, bulletinMeteo.getHumidite());
 	}
 	
+	/**
+	 * Test du mapping d'une BulletinMeteoExt en TemperatureDto
+	 */
 	@Test
 	void mapperBulletinMeteoExtToTemperatureDto() {
 		BulletinMeteoExt bulletinMeteoExt = new BulletinMeteoExt();

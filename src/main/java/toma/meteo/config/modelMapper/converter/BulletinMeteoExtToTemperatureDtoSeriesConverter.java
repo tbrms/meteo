@@ -18,6 +18,9 @@ implements Converter<List<BulletinMeteoExt>, TemperatureDtoSeries> {
 	@Autowired
 	ModelMapper mapper;
 	
+	/**
+	 * Convertir un BulletinMeteoExt en TemperatureDtoSeries
+	 */
 	@Override
 	public TemperatureDtoSeries convert(MappingContext<List<BulletinMeteoExt>, TemperatureDtoSeries> context) {
 		List<BulletinMeteoExt> source = context.getSource();

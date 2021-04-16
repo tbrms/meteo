@@ -6,7 +6,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import toma.meteo.config.modelMapper.converter.BulletinMeteoExtToTemperatureDtoConverter;
-import toma.meteo.config.modelMapper.converter.BulletinMeteoExtToTemperatureDtoSeriesConverter;
 import toma.meteo.config.modelMapper.converter.ReleveMeteoToBulletinMeteoExtConverter;
 
 /**
@@ -27,7 +26,6 @@ public class ModelMapperConfig {
     // un converter de BulletinMeteo en BulletinMeteoDto
     modelMapper.addConverter(new ReleveMeteoToBulletinMeteoExtConverter());
     modelMapper.addConverter(new BulletinMeteoExtToTemperatureDtoConverter());
-    //modelMapper.addConverter(new BulletinMeteoExtToTemperatureDtoSeriesConverter());
 
     modelMapper.getConfiguration()
 

@@ -50,8 +50,8 @@ public class ReleveMeteoController {
 		this.releveMeteo = releveMeteo;
 	}
 	
-	/*
-	 * Recuperer un bulletin meteo fictif
+	/**
+	 * Recuperer un releve meteo fictif
 	 */
 	@ResponseStatus(code = HttpStatus.OK)
 	@ApiOperation(value = "Obtenir le releve meteo fictif", response = ReleveMeteo.class)
@@ -65,8 +65,8 @@ public class ReleveMeteoController {
 		return releveMeteo;
 	}
 	
-	/*
-	 * Inserer un bulletin meteo en BDD
+	/**
+	 * Inserer un releve meteo en BDD
 	 */
 	@ResponseStatus(code = HttpStatus.CREATED)
 	@ApiOperation(value = "Insérer un relevé en BDD", response = BulletinMeteoExt.class)
@@ -84,7 +84,7 @@ public class ReleveMeteoController {
 		releveMeteoService.ajouter(bulletinMeteo);
 	}
 	
-	/*
+	/**
 	 * Recuperer une temperature fictive
 	 */
 	private float getRandomTemp() {
@@ -92,7 +92,7 @@ public class ReleveMeteoController {
 		return (float) r.nextInt(20) + 10;
 	}
 	
-	/*
+	/**
 	 * Recuperer une pression fictive
 	 */
 	private float getRandomPression() {
@@ -100,7 +100,7 @@ public class ReleveMeteoController {
 		return (float) r.nextInt(100) + 950;
 	}
 	
-	/*
+	/**
 	 * Recuperer une humidite fictive
 	 */
 	private float getRandomHumidite() {

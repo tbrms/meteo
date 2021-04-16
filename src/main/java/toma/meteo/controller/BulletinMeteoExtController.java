@@ -9,7 +9,6 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -18,8 +17,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiResponses;
 import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import toma.meteo.bean.BulletinMeteoExt;
 import toma.meteo.service.ArduinoService;
 import toma.meteo.service.BulletinMeteoService;
@@ -42,40 +41,39 @@ public class BulletinMeteoExtController {
 	public BulletinMeteoExtController() {
 	}
 	
-	/*
-	 * Recuperer le dernier bulletin meteo en BDD
+	/**
+	 * Recuperer le dernier bulletin meteo exterieure en BDD
 	 */
 	@ResponseStatus(code = HttpStatus.OK)
 	@ApiOperation(value = "Obtenir le bulletin meteo le plus recent en BDD", response = BulletinMeteoExt.class)
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "Dernier bulletin envoyé"),
 			@ApiResponse(code = 500, message = "Erreur interne du serveur") })
-	@GetMapping("/getLastBulletinMeteo")
+	@GetMapping("/getLastBulletinMeteoExt")
 	public BulletinMeteoExt getLastReleveMeteo() {
 		return bulletinMeteoService.getLast();
 	}
 	
-	/*
-	 * Recuperer les n derniers bulletins en BDD
+	/**
+	 * Recuperer les n derniers bulletins meteo exterieure en BDD
 	 */
 	@ResponseStatus(code = HttpStatus.OK)
 	@ApiOperation(value = "Obtenir les n derniers bulletins meteo le plus recent en BDD", response = BulletinMeteoExt.class)
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "Liste des n derniers bulletin envoyée"),
 			@ApiResponse(code = 500, message = "Erreur interne du serveur") })
-	@GetMapping(value = "/releves/{n}", produces = MediaType.APPLICATION_JSON_VALUE)
+	@GetMapping(value = "/bulletinMeteoExt/{n}", produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	public List<BulletinMeteoExt> getDerniersBulletins(@PathVariable("n") int n) {
 		return bulletinMeteoService.getDerniersBulletins(n);
 	}
 	
-	/*
-	 * Recuperer un bulletin meteo en direct
+	/**
+	 * Recuperer un bulletin meteo exterieure instantane
 	 */
 	@ResponseStatus(code = HttpStatus.OK)
 	@ApiOperation(value = "Obtenir un bulletin météo instantané", response = BulletinMeteoExt.class)
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "Bulletin météo instantané"),
 			@ApiResponse(code = 500, message = "Erreur interne du serveur") })
-	//@CrossOrigin(origins = "*")
-	@GetMapping("/getReleveMeteoInstantane")
+	@GetMapping("/getBulletinMeteoExtInstantane")
 	public BulletinMeteoExt getReleveMeteoInstantane() {
 		Optional<BulletinMeteoExt> bulletin = arduinoService.getBulletinMeteo();
 		if (bulletin.isPresent()) {

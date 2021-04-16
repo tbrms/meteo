@@ -11,6 +11,9 @@ import toma.meteo.bean.ReleveMeteo;
 
 public class ReleveMeteoToBulletinMeteoExtConverter implements Converter<ReleveMeteo, BulletinMeteoExt> {
 	
+	/**
+	 * Convertir un ReleveMeteo en BulletinMeteoExt
+	 */
 	@Override
 	public BulletinMeteoExt convert(MappingContext<ReleveMeteo, BulletinMeteoExt> context) {
 		ReleveMeteo source = context.getSource();

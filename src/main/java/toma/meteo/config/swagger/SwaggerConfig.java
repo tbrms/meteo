@@ -12,23 +12,25 @@ import springfox.documentation.spring.web.plugins.Docket;
 
 @Configuration
 public class SwaggerConfig {
-	
+
+	/**
+	 * Configurer Swagger
+	 * @return
+	 */
 	@Bean
-    public Docket api() {
-        return new Docket(DocumentationType.SWAGGER_2)
-        		.apiInfo(apiInfo())
-                .select()     
-                .apis(RequestHandlerSelectors.basePackage("toma.meteo.controller"))
-                .paths(PathSelectors.any())
-                .build();
-    }
-	
-	// Swagger entete custom
-	  private ApiInfo apiInfo() {
-	    return new ApiInfoBuilder()
-	    	.title("Spring Boot REST API Documentation pour projet meteo")
-	        .description("REST APIs pour projet meteo")
-	        .version("1.0").build();
-	  }
+	public Docket api() {
+		return new Docket(DocumentationType.SWAGGER_2).apiInfo(apiInfo()).select()
+				.apis(RequestHandlerSelectors.basePackage("toma.meteo.controller"))
+				.paths(PathSelectors.any()).build();
+	}
+
+	/**
+	 * Creer l'entete de la page de Swagger
+	 * @return
+	 */
+	private ApiInfo apiInfo() {
+		return new ApiInfoBuilder().title("Spring Boot REST API Documentation pour projet meteo")
+				.description("REST APIs pour projet meteo").version("1.0").build();
+	}
 
 }

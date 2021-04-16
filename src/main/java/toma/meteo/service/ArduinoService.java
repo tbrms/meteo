@@ -15,7 +15,6 @@ import org.springframework.web.client.RestTemplate;
 import toma.meteo.bean.BulletinMeteoExt;
 import toma.meteo.bean.ReleveMeteo;
 
-//@ActiveProfiles({"prod","profiltoma"})
 @Service
 public class ArduinoService {
 
@@ -29,16 +28,16 @@ public class ArduinoService {
     @Autowired
     private Environment environment;
 
+    /**
+     * Obtenir un BulletinMeteoExt depuis l'Arduino
+     * @return Optional<BulletinMeteoExt>
+     */
     public Optional<BulletinMeteoExt> getBulletinMeteo(){
 
         RestTemplate restTemplate = new RestTemplate();
         BulletinMeteoExt bulletinMeteo = null;
 
         try {
-            //Properties properties = ConfigService.getConfig();
-            //final String HOST = properties.getProperty("arduino.host");
-            //final String PORT = properties.getProperty("arduino.port");
-
             final String HOST = environment.getProperty("arduino.host");
             final String PORT = environment.getProperty("arduino.port");
 

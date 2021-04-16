@@ -7,7 +7,6 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
@@ -19,7 +18,6 @@ import toma.meteo.service.BulletinMeteoService;
 import toma.meteo.utils.DateUtils;
 
 @SpringBootTest
-//@ActiveProfiles("profiltoma,prod")
 class BulletinMeteoServiceTest {
 
 	private static final BigDecimal TEMP = 

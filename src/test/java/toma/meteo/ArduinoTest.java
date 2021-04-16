@@ -14,7 +14,6 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import toma.meteo.bean.BulletinMeteoExt;
-import toma.meteo.bean.ReleveMeteo;
 import toma.meteo.service.BulletinMeteoService;
 
 @SpringBootTest
