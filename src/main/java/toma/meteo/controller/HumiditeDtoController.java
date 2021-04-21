@@ -21,50 +21,51 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import toma.meteo.bean.BulletinMeteoExt;
-import toma.meteo.dto.donnee.TemperatureDto;
-import toma.meteo.dto.series.TemperatureDtoSeries;
+import toma.meteo.dto.donnee.HumiditeDto;
+import toma.meteo.dto.series.HumiditeDtoSeries;
+import toma.meteo.dto.series.PressionDtoSeries;
 import toma.meteo.service.BulletinMeteoService;
 
 @RestController
-@Api(value = "TemperatureDtoController")
-public class TemperatureDtoController {
+@Api(value = "PressionDtoController")
+public class HumiditeDtoController {
 	
-	Logger logger = LogManager.getLogger(TemperatureDtoController.class);
+	Logger logger = LogManager.getLogger(HumiditeDtoController.class);
 	
 	@Autowired
 	ModelMapper mapper;
 
 	@Autowired
 	BulletinMeteoService bulletinMeteoService;
-	
+
 	/*
 	 * Obtenir les n dernieres temperatures avec une date formatee
 	 * pour affichage par le front end
 	 */
 	@ResponseStatus(code = HttpStatus.OK)
-	@ApiOperation(value = "Obtenir les n dernieres temperatures les plus recentes en BDD", response = TemperatureDtoSeries.class)
-	@ApiResponses(value = { @ApiResponse(code = 200, message = "Liste des n dernieres temperatures envoyée"),
+	@ApiOperation(value = "Obtenir les n dernieres humidite les plus recentes en BDD", response = PressionDtoSeries.class)
+	@ApiResponses(value = { @ApiResponse(code = 200, message = "Liste des n dernieres humidités envoyée"),
 			@ApiResponse(code = 500, message = "Erreur interne du serveur") })
-	@GetMapping(value = "/temperatureSeries/{n}", produces = MediaType.APPLICATION_JSON_VALUE)
+	@GetMapping(value = "/humiditeSeries/{n}", produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
-	public TemperatureDtoSeries getDerniersBulletins(@PathVariable("n") int n) {
+	public HumiditeDtoSeries getDerniersBulletins(@PathVariable("n") int n) {
 		//FIXME Ameliorer le code en java 8
 		List<BulletinMeteoExt> listeBulletinMeteoExt = 
 				bulletinMeteoService.getDerniersBulletins(n);
 		listeBulletinMeteoExt.sort(Comparator.comparing(BulletinMeteoExt::getDate));
-		TemperatureDtoSeries temperatureDtoSeries = new TemperatureDtoSeries();
-		List<TemperatureDto> listeTemperatureDto = new ArrayList<TemperatureDto>();
+		HumiditeDtoSeries pressionDtoSeries = new HumiditeDtoSeries();
+		List<HumiditeDto> listePressionDto = new ArrayList<HumiditeDto>();
 		
 		for(BulletinMeteoExt element : listeBulletinMeteoExt) {
-			TemperatureDto temperatureDto = new TemperatureDto();
-			mapper.map(element, temperatureDto);
-			listeTemperatureDto.add(temperatureDto);
+			HumiditeDto humiditeDto = new HumiditeDto();
+			mapper.map(element, humiditeDto);
+			listePressionDto.add(humiditeDto);
 		}
 		
-		temperatureDtoSeries.setSeries(listeTemperatureDto);
-		temperatureDtoSeries.setName("Temperature");
+		pressionDtoSeries.setSeries(listePressionDto);
+		pressionDtoSeries.setName("Pression");
 		
-		return temperatureDtoSeries;
+		return pressionDtoSeries;
 	}
 
 }

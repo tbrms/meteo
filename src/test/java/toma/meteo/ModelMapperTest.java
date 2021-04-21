@@ -14,7 +14,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import toma.meteo.bean.BulletinMeteoExt;
 import toma.meteo.bean.ReleveMeteo;
-import toma.meteo.dto.TemperatureDto;
+import toma.meteo.dto.donnee.TemperatureDto;
 import toma.meteo.utils.DateUtils;
 
 @SpringBootTest

@@ -1,23 +1,16 @@
-package toma.meteo.dto;
+package toma.meteo.dto.donnee;
 
 import java.math.BigDecimal;
 
-import org.springframework.stereotype.Component;
-
 import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.FieldDefaults;
 
 @FieldDefaults(level=AccessLevel.PRIVATE)
-@NoArgsConstructor
-@AllArgsConstructor
 @Getter
 @Setter
-@Component
-public class TemperatureDto {
+public abstract class DonneeDto {
 	
 	private String name;
 	private BigDecimal value;

@@ -159,7 +159,7 @@
 			<id>prod</id>
 			<properties>
 				<spring.profiles.active>prod</spring.profiles.active>
-				<rp.build.warname>meteoprod</rp.build.warname>
+				<rp.build.warname>meteo</rp.build.warname>
 			</properties>
 			<dependencies>
 				<dependency>

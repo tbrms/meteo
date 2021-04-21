@@ -5,6 +5,8 @@ import org.modelmapper.config.Configuration.AccessLevel;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import toma.meteo.config.modelMapper.converter.BulletinMeteoExtToHumiditeDtoConverter;
+import toma.meteo.config.modelMapper.converter.BulletinMeteoExtToPressionDtoConverter;
 import toma.meteo.config.modelMapper.converter.BulletinMeteoExtToTemperatureDtoConverter;
 import toma.meteo.config.modelMapper.converter.ReleveMeteoToBulletinMeteoExtConverter;
 
@@ -26,6 +28,8 @@ public class ModelMapperConfig {
     // un converter de BulletinMeteo en BulletinMeteoDto
     modelMapper.addConverter(new ReleveMeteoToBulletinMeteoExtConverter());
     modelMapper.addConverter(new BulletinMeteoExtToTemperatureDtoConverter());
+    modelMapper.addConverter(new BulletinMeteoExtToPressionDtoConverter());
+    modelMapper.addConverter(new BulletinMeteoExtToHumiditeDtoConverter());
 
     modelMapper.getConfiguration()
 

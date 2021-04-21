@@ -9,8 +9,8 @@ import org.modelmapper.spi.MappingContext;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import toma.meteo.bean.BulletinMeteoExt;
-import toma.meteo.dto.TemperatureDto;
-import toma.meteo.dto.TemperatureDtoSeries;
+import toma.meteo.dto.donnee.TemperatureDto;
+import toma.meteo.dto.series.TemperatureDtoSeries;
 
 public class BulletinMeteoExtToTemperatureDtoSeriesConverter 
 implements Converter<List<BulletinMeteoExt>, TemperatureDtoSeries> {

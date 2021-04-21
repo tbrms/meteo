@@ -31,10 +31,13 @@ public class BulletinMeteoExt {
 	@SequenceGenerator(name = "SQ_BULLETIN_METEO_EXT", sequenceName = "SQ_BULLETIN_METEO_EXT", allocationSize = 1)
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SQ_BULLETIN_METEO_EXT")
 	long id;
+	@Column(nullable = false)
 	LocalDateTime date;
-	@Column(precision = 3,scale = 1)
+	@Column(precision = 3,scale = 1,nullable = false)
 	BigDecimal temperature;
+	@Column(nullable = false)
 	int pression;
+	@Column(nullable = false)
 	int humidite;
 	
 	@Override
