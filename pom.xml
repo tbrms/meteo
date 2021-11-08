@@ -125,6 +125,23 @@
 			</dependencies>	
 		</profile>
 		<profile>
+			<id>mockoon</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+				<spring.profiles.active>mockoon</spring.profiles.active>
+				<rp.build.warname>meteodev</rp.build.warname>
+			</properties>
+			<dependencies>
+				<dependency>
+					<groupId>com.h2database</groupId>
+					<artifactId>h2</artifactId>
+					<scope>runtime</scope>
+				</dependency>
+			</dependencies>	
+		</profile>
+		<profile>
 			<id>qual</id>
 			<properties>
 				<spring.profiles.active>qual</spring.profiles.active>
