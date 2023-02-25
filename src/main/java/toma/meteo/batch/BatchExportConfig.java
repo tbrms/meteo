@@ -23,8 +23,8 @@ import org.springframework.core.task.SimpleAsyncTaskExecutor;
 
 import toma.meteo.bean.BulletinMeteoExt;
 
-@Configuration
-@EnableBatchProcessing
+//@Configuration
+//@EnableBatchProcessing
 public class BatchExportConfig {
 	
 	public static final String JOB_NAME = "exportJob";

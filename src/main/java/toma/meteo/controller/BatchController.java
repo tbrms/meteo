@@ -31,7 +31,7 @@ import io.swagger.annotations.ApiResponses;
 import toma.meteo.batch.BatchExportConfig;
 import toma.meteo.bean.BulletinMeteoExt;
 
-@RestController
+//@RestController
 public class BatchController {
 	
 	@Autowired

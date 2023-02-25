@@ -25,8 +25,8 @@ import org.springframework.core.task.SimpleAsyncTaskExecutor;
 
 import toma.meteo.bean.BulletinMeteoExt;
 
-@Configuration
-@EnableBatchProcessing
+//@Configuration
+//@EnableBatchProcessing
 public class BatchBoucleConfig {
 
 	private static final String JOB_NAME = "boucleJob";
