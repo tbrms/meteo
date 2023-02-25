@@ -1,12 +1,12 @@
 drop table bulletin_meteo;
 
 
-truncate bulletin_meteo ;
+truncate bulletin_meteo_ext ;
 
-ALTER SEQUENCE hibernate_sequence RESTART WITH 1316;
+ALTER SEQUENCE sq_bulletin_meteo_ext RESTART WITH 1;
 
 
-select * from bulletin_meteo bm ;
+select * from bulletin_meteo_ext bme ;
 
 select temperature from bulletin_meteo where id=46;
 
@@ -22,3 +22,5 @@ CREATE TABLE bulletin_meteo (
     temperature numeric(19,1) NOT NULL,
     PRIMARY KEY (id)
 );
+
+select  now(); 
